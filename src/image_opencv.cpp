@@ -84,7 +84,9 @@ image get_image_from_stream(void *p)
     Mat m;
     *cap >> m;
     if(m.empty()) return make_empty_image(0,0,0);
-    return mat_to_image(m);
+    Mat mirror;
+    flip(m, mirror, 1);
+    return mat_to_image(mirror);
 }
 
 image load_image_cv(char *filename, int channels)
